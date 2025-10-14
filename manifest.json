@@ -6,7 +6,7 @@
 	"description": "A gamified writing plugin for Obsidian.",
 	"main": "main.js",
 	"css": "styles.css",
-	"author": "Your Name",
+	"author": "lili13500",
 	"authorUrl": "",
 	"isDesktopOnly": false
 }
