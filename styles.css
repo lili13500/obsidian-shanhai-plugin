@@ -1,0 +1,572 @@
+/* General View Styles */
+.shanhai-view-container button {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.shanhai-view-container button:hover {
+    background-color: var(--interactive-accent-hover);
+}
+
+.shanhai-view-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Empty State Styles */
+.shanhai-empty-state-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.shanhai-empty-state-container button {
+    margin-top: 15px;
+}
+
+/* Treasures Section */
+.shanhai-treasures-container {
+    margin-bottom: 20px;
+}
+
+.shanhai-treasure-item {
+    margin-bottom: 5px;
+}
+
+/* Combat Section */
+.shanhai-combat-container {
+    /* Styles for the combat area */
+}
+
+.shanhai-monster-name {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.shanhai-hp-text {
+    margin-bottom: 5px;
+}
+
+.shanhai-hp-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0; /* Slightly darker Light Gray */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.shanhai-hp-bar {
+    height: 100%;
+    background-color: var(--interactive-accent);
+    opacity: 0.6;
+    width: 100%; /* Default to full */
+    transition: width 0.5s ease-in-out;
+}
+
+/* Victory Section */
+.shanhai-victory-container {
+    text-align: center;
+}
+
+.shanhai-victory-title {
+    color: #ffd700; /* Gold color for victory */
+}
+
+/* Notification Section */
+.shanhai-notification {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.1);
+    color: var(--text-normal);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 1px solid var(--background-modifier-border);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Don't block clicks */
+}
+
+.shanhai-notification.is-visible {
+    opacity: 1;
+}
+
+.shanhai-combo-container {
+    margin-top: 5px; /* Add some space from the HP bar */
+    font-size: 1.2em; /* Final Size */
+    font-weight: bold;
+    color: var(--text-faint);
+    display: none; /* Hidden by default */
+    text-align: left;
+}
+
+.shanhai-combo-container.combo-tier-1 { color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.5); }
+.shanhai-combo-container.combo-tier-2 { color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.65); }
+.shanhai-combo-container.combo-tier-3 { color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.8); }
+.shanhai-combo-container.combo-tier-4 { color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.9); }
+.shanhai-combo-container.combo-tier-5 { color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1.0); }
+
+.shanhai-flow-timer-bar {
+    position: fixed;
+    bottom: 50px; /* Adjust position to be below the combo text */
+    right: 20px;
+    width: 100px; /* Give it a fixed width for better control */
+    max-width: 80%; /* Ensure it doesn't overflow on small screens */
+    height: 2px;
+    background-color: var(--text-accent);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transform-origin: left;
+}
+
+.shanhai-flow-timer-bar.is-active {
+    opacity: 1;
+    animation-name: deplete;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes deplete {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* === Power Mode Effects Styles === */
+.power-mode-explosion {
+    position: absolute;
+    pointer-events: none;
+    z-index: 99999;
+    transform-origin: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.power-mode-explosion-mask {
+    background-color: var(--text-normal);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+}.power-mode-combo {
+  position: fixed;
+  display: flex;
+  right: 6%;
+  top: 120px;
+  font-weight: 900;
+  pointer-events: none;
+  z-index: 1;
+  font-size: 40px;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: monospace;
+}
+.power-mode-combo-progress {
+  height: 12px;
+  background-color: white;
+  border: solid 1px white;
+}
+.power-mode-combo-text {
+  color: white;
+}
+.power-mode-combo-exclamation {
+  font-size: 24px;
+}
+.power-mode-explosion {
+  position: absolute;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.power-mode-explosion-mask {
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  filter: saturate(150%);
+}
+
+.power-mode-explosion-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.power-mode-setting-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.power-mode-setting-preview .power-mode-setting-item {
+  height: 64px;
+  width: fit-content;
+  position: relative;
+}
+
+.power-mode-setting-preview .power-mode-setting-remove {
+  opacity: 0;
+  transition: opacity 0.2s;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background-color: rgba(128, 128, 128, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.power-mode-setting-item:hover .power-mode-setting-remove {
+  opacity: 1;
+}
+
+.power-mode-setting-preview img {
+  width: auto;
+  height: 64px;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.power-mode-setting-list {}
+
+.sortable-item {
+  transition: transform 200ms ease, opacity 200ms ease;
+  touch-action: none;
+}
+
+.is-dragging {
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.power-mode-setting-item.dragging {
+  cursor: grabbing;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  transform-origin: 0 0;
+  animation: pop 200ms cubic-bezier(0.18, 0.67, 0.6, 1.22);
+}
+
+/* Select Monster Modal Styles */
+.shanhai-select-monster-modal h1 {
+    color: var(--interactive-accent); /* Use theme accent color */
+    text-align: center;
+}
+
+/* Set a fixed height for the modal when in custom monster view */
+.modal.shanhai-custom-monster-modal-size {
+    height: 560px;
+}
+
+.shanhai-select-monster-modal {
+    text-align: center;
+}
+
+.shanhai-button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.shanhai-button-container button {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+/* Honors Modal Styles */
+.shanhai-honors-modal h1 {
+    color: var(--interactive-accent); /* Use theme accent color */
+    text-align: center;
+}
+
+.shanhai-honors-stats {
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+.shanhai-honors-stats .stats-star-1 { color: #999999; }
+.shanhai-honors-stats .stats-star-2 { color: #6f4e37; }
+.shanhai-honors-stats .stats-star-3 { color: #00aaff; }
+.shanhai-honors-stats .stats-star-4 { color: #d42aff; }
+.shanhai-honors-stats .stats-star-5 { color: #ffc700; }
+
+.shanhai-honors-modal .shanhai-cloud-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Give the container a fixed height */
+    border: 1px dashed var(--background-modifier-border);
+    border-radius: 10px;
+}
+
+.shanhai-honors-modal .shanhai-cloud-container span {
+    position: absolute;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent line breaks */
+    cursor: grab;
+    user-select: none; /* Prevent text selection while dragging */
+}
+
+.shanhai-honors-modal .shanhai-cloud-container span:active {
+    cursor: grabbing;
+    z-index: 100;
+}
+
+.shanhai-title-delete-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--background-modifier-error);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.shanhai-honors-modal .shanhai-cloud-container span:hover .shanhai-title-delete-btn {
+    opacity: 1;
+}
+
+.shanhai-honors-modal .shanhai-cloud-container span:hover::after {
+    content: attr(data-unlocked-at);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--background-primary);
+    color: var(--text-faint); /* Lighter color */
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.7em; /* Reduced font size */
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.shanhai-honors-modal .shanhai-cloud-container .star-1, .shanhai-battle-report .star-1 { font-size: 1em; color: #999999; }
+.shanhai-honors-modal .shanhai-cloud-container .star-2, .shanhai-battle-report .star-2 { font-size: 1.2em; color: #6f4e37; } /* Dark Coffee */
+.shanhai-honors-modal .shanhai-cloud-container .star-3, .shanhai-battle-report .star-3 { font-size: 1.5em; color: #00aaff; }
+.shanhai-honors-modal .shanhai-cloud-container .star-4, .shanhai-battle-report .star-4 { font-size: 1.8em; color: #d42aff; }
+.shanhai-honors-modal .shanhai-cloud-container .star-5, .shanhai-battle-report .star-5 {
+    font-size: 2.2em;
+    color: #ffc700;
+    animation: shanhai-shimmer-gold 2s infinite;
+    z-index: 5; /* Ensure 5-star titles are on top */
+}
+
+.new-title-container {
+    background-color: var(--background-secondary-alt);
+    border: 1px solid #4a90e2; /* Vibrant Blue */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.new-title-container h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title-stars {
+    font-size: 1.2em;
+    color: #ffc700; /* Gold */
+}
+
+.shanhai-monster-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.shanhai-monster-item {
+    border: 1px solid var(--background-modifier-border);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.shanhai-monster-item:hover {
+    background-color: var(--background-modifier-hover);
+    transform: translateY(-2px);
+}
+
+.shanhai-custom-monster-button {
+    border-style: dashed;
+    border-color: var(--text-accent);
+    color: var(--text-accent);
+    text-align: center;
+    font-weight: bold;
+}
+
+.shanhai-monster-name-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.shanhai-star-label {
+    font-weight: bold;
+}
+
+.shanhai-star-container {
+    font-size: 2.5em;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.shanhai-custom-monster-button {
+    border-style: dashed;
+    border-color: #4a90e2; /* Vibrant Blue */
+    color: #4a90e2; /* Vibrant Blue */
+    text-align: center;
+    font-weight: bold;
+}
+
+.shanhai-monster-name-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.shanhai-star-label {
+    font-weight: bold;
+}
+
+.shanhai-star-container {
+    font-size: 2.5em;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.shanhai-star-container .inactive {
+    color: var(--background-modifier-border);
+}
+
+.shanhai-theme-buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.shanhai-theme-button {
+    background-color: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.shanhai-theme-button:hover {
+    background-color: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+}
+
+.shanhai-theme-button.active {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.shanhai-theme-button:active,
+.shanhai-custom-monster-view button:active {
+    transform: scale(0.97);
+    transition: transform 0.05s ease-in-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+} 
+
+/* Battle Report Modal Styles */
+.shanhai-battle-report button,
+.shanhai-select-monster-modal button {
+    background-color: #4a90e2; /* Vibrant Blue */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.shanhai-battle-report button:hover,
+.shanhai-select-monster-modal button:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.shanhai-battle-report {
+    text-align: center;
+}
+
+.shanhai-battle-report h1 {
+    color: #4a90e2; /* Vibrant Blue */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.shanhai-battle-report .stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.shanhai-battle-report .reward-bonus {
+    color: #ffc700; /* Gold color for bonus */
+    font-weight: bold;
+}
+
+.shanhai-battle-report button {
+    margin-top: 20px;
+}
+
+.shanhai-content-fading {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* --- Settings Tab Styles --- */
+.mod-settings .vertical-tab-content summary {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}

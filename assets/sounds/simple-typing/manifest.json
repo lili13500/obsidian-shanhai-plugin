@@ -1,0 +1,9 @@
+{
+    "id": "simple-typing",
+    "caption": "Simple Typing",
+    "key": "key.wav",
+    "key2": "key.wav",
+    "space": "space.wav",
+    "enter": "enter.wav",
+    "delete": "key.wav"
+}

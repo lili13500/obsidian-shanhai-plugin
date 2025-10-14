@@ -1,0 +1,12 @@
+{
+	"id": "shanhai",
+	"name": "Shanhai",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "A gamified writing plugin for Obsidian.",
+	"main": "main.js",
+	"css": "styles.css",
+	"author": "Your Name",
+	"authorUrl": "",
+	"isDesktopOnly": false
+}
