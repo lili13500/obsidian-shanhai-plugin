@@ -4,6 +4,7 @@ import { EXPLOSION_PRESETS } from "./config/effects-presets";
 import { triggerExplosion } from "./feedback/effects/Explosion"; // Import the new function
 import { THEME_CONFIG } from "./config/game-data";
 import { t } from "./lang/translator";
+import { WECHAT_PAY_QR_CODE } from "./config/base64-assets";
 
 export class ShanhaiSettingTab extends PluginSettingTab {
     plugin: ShanhaiPlugin;
@@ -209,8 +210,7 @@ export class ShanhaiSettingTab extends PluginSettingTab {
         supportDiv.createEl('p', { text: 'If you find this plugin helpful, feel free to buy me a coffee via WeChat Pay. Your support is greatly appreciated!' });
         
         const qrImg = supportDiv.createEl('img');
-        // @ts-ignore
-        qrImg.src = this.app.vault.adapter.getResourcePath(this.plugin.manifest.dir + '/assets/wechat-pay.png');
+        qrImg.src = WECHAT_PAY_QR_CODE;
         qrImg.alt = 'WeChat Pay QR Code';
         qrImg.style.maxWidth = '200px';
         qrImg.style.display = 'block';
